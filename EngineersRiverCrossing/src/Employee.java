@@ -1,19 +1,24 @@
+// Employee Constructor Class
 
-public class Employee {
+public class Employee {  
 	
-	String name;
-	String role;
-	int company;
-	int beforeValue;
-	int afterValue;
+    String name;
+    String role;
+    int company;
+    int beforeValue;
+    int afterValue;
+    int beforeBoatValue;
+    int afterBoatValue;
 	
-	public Employee(String name, String role, int company, int beforeValue, int afterValue) {
+	public Employee(String name, String role, int company, int beforeValue, int afterValue, int beforeBoatValue, int afterBoatValue) { 
 		
-	name = this.name;
-	role = this.role;
-	company = this.company;
-	beforeValue = this.beforeValue;
-	afterValue=this.afterValue;
+        this.name = name;
+        this.role = role;
+        this.company = company;
+       this.beforeValue = beforeValue;
+       this.afterValue = afterValue;
+       this.beforeBoatValue = beforeBoatValue;
+       this.afterBoatValue = afterBoatValue;
 	
 	}
 	
