@@ -243,3 +243,33 @@ public class CompaniesCrossing {
 
 
 }
+
+public static boolean recruitmentOne(Employee[] employees) {
+
+    boolean flag = true;
+
+    for(int i = 0; i < employees.length; i++) {
+        for (int j = 0; j < employees.length; j++) {
+            if (employees[i].afterValue == employees[j].afterValue && employees[i].company != employees[j].company && employees[i].role == "manager" && employees[j].role == "engineer" && employees[i].company == 1) {
+                for (int k = 0; k < employees.length; j++) {
+                    if (employees[j].company == employees[k].company && employees[k].role == "manager" && employees[k].afterValue == employees[j].afterValue) {
+                        flag = true;
+                    } else {
+
+                        flag = false;
+                    }
+                }
+            } else if (employees[i].role == "engineer" && employees[j].role == "manager" && employees[j].company == 1) {
+                for (int k = 0; k < employees.length; j++) {
+                    if (employees[i].company == employees[k].company && employees[k].role == "manager" && employees[k].afterValue == employees[i].afterValue) {
+                        flag = true;
+                    } else {
+                        flag = false;
+                    }
+                }
+
+            }
+        }
+    }
+    return flag;
+}
