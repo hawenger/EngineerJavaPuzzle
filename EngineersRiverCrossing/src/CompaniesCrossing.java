@@ -3,7 +3,7 @@ public class CompaniesCrossing {
 
     public static boolean illegalBoatVariables(Employee[] employees) {
 
-        if(employees[0].beforeBoatValue >= 3 || employees[0].afterBoatValue >= 3) {
+        if((employees[0].beforeBoatValue != 1 && employees[0].beforeBoatValue != 2) || employees[0].afterBoatValue != 1 && employees[0].afterBoatValue != 2) {
 
             return false;																	// Did boat move to real location
 
@@ -15,15 +15,14 @@ public class CompaniesCrossing {
 
     public static boolean illegalEmployeeVariables(Employee[] employees) {
 
-        boolean flag = true;
 
         for( int i = 0; i < employees.length; i++) {
-            if(employees[i].beforeValue >= 3 || employees[i].afterValue >= 3) { // Did employee move to real location
-                flag = false;
+            if((employees[i].beforeValue != 1 && employees[i].beforeValue != 2) || employees[i].afterValue != 1 && employees[i].afterValue != 2) { // Did employee move to real location
+                return false;
             }
         }
 
-        return flag;
+        return true;
 
     }
 
@@ -43,25 +42,20 @@ public class CompaniesCrossing {
 
     public static boolean sameSide(Employee[] employees) { //People moving on same side of boat
 
-        boolean flag = true;
 
         for(int i = 0; i < employees.length; i++) {
-            if(employees[i].beforeValue != employees[i].afterValue) {
-                for(int j = 0; j < employees.length; j++) {
-                    if(employees[j].beforeValue != employees[j].afterValue && employees[j].beforeValue != employees[i].beforeValue ) {
-                        flag = false;
-                    }
-                }
-            }
+        	if(employees[i].beforeBoatValue != employees[i].beforeValue && employees[i].beforeValue != employees[i].afterValue) {
+        		return false;
+        	}
+            
         }
 
-        return flag;
+        return true;
     }
 
     public static boolean peopleMoving(Employee[] employees) {  // One or two people moving
 
         int crossingTicker = 0;
-        boolean flag;
 
         for(int i = 0; i < employees.length; i++) {
 
@@ -70,103 +64,102 @@ public class CompaniesCrossing {
             }
         }
 
-        if(crossingTicker >= 3) {
+        if(crossingTicker > 2 || crossingTicker <= 0) {
 
-            flag = false;
-
-        } else {
-
-            flag = true;
+           return false;
 
         }
 
-        return flag;
+        return true;
     }
 
     public static boolean recruitmentOne(Employee[] employees) {
 
-        boolean flag = true;
-
         for(int i = 0; i < employees.length; i++) {
-        	
             for(int j = 0; j < employees.length; j++) {
-                if(employees[i].afterValue == employees[j].afterValue && employees[i].company != employees[j].company) {
-                    if(employees[i].role == "manager" && employees[j].role == "engineer") {
-                        if(employees[i].role == "manager" & employees[i].company == 1) {
-                            flag = false;
-                        }
+                if(employees[i].afterValue == employees[j].afterValue && employees[i].company != employees[j].company) {	
+                    if(employees[i].role.equals("manager") && employees[j].role.equals("engineer")) {
+                    	int managerIndex = 0;
+                    	
+                    	for(int k = 0; k < employees.length; k++) {
+                    	if(employees[k].company == employees[j].company&& j != k) {
+                    	
+                    			managerIndex = k;
+                    			
+                    		}
+                    	}
+                    	if(!(employees[j].afterValue == employees[managerIndex].afterValue) && employees[i].company == 1) {
+                    		return false;
+                    	}
 
-                    } else if(employees[i].role == "engineer" && employees[j].role == "manager") {
-                        if(employees[i].role == "manager" & employees[i].company == 1) {
-                            flag = false;
-
-                        }
-
-                    }
                 }
 
             }
         }
+        }
 
-        return flag;
+        return true;
 
     }
 
 
     public static boolean recruitmentTwo(Employee[] employees) {
-
-        boolean flag = true;
-
+        
         for(int i = 0; i < employees.length; i++) {
             for(int j = 0; j < employees.length; j++) {
-                if(employees[i].afterValue == employees[j].afterValue && employees[i].company != employees[j].company) {
-                    if(employees[i].role == "manager" && employees[j].role == "engineer") {
-                        if(employees[i].role == "manager" & employees[i].company == 2) {
-                            flag = false;
-                        }
+                if(employees[i].afterValue == employees[j].afterValue && employees[i].company != employees[j].company) {	
+                    if(employees[i].role.equals("manager") && employees[j].role.equals("engineer")) {
+                    	int managerIndex = 0;
+                    	
+                    	for(int k = 0; k < employees.length; k++) {
+                    	if(employees[k].company == employees[j].company&& j != k) {
+                    	
+                    			managerIndex = k;
+                    			
+                    		}
+                    	}
+                    	if(!(employees[j].afterValue == employees[managerIndex].afterValue) && employees[i].company == 2) {
+                    		return false;
+                    	}
 
-                    } else if(employees[i].role == "engineer" && employees[j].role == "manager") {
-                        if(employees[i].role == "manager" & employees[i].company == 2) {
-                            flag = false;
-
-                        }
-
-                    }
                 }
 
             }
         }
+        }
 
-        return flag;
+        return true;
 
     }
 
     public static boolean recruitmentThree(Employee[] employees) {
-        boolean flag = true;
-
         for(int i = 0; i < employees.length; i++) {
             for(int j = 0; j < employees.length; j++) {
-                if(employees[i].afterValue == employees[j].afterValue && employees[i].company != employees[j].company) {
-                    if(employees[i].role == "manager" && employees[j].role == "engineer") {
-                        if(employees[i].role == "manager" & employees[i].company == 3) {
-                            flag = false;
-                        }
+                if(employees[i].afterValue == employees[j].afterValue && employees[i].company != employees[j].company) {	
+                    if(employees[i].role.equals("manager") && employees[j].role.equals("engineer")) {
+                    	int managerIndex = 0;
+                    	
+                    	for(int k = 0; k < employees.length; k++) {
+                    	if(employees[k].company == employees[j].company&& j != k) {
+                    	
+                    			managerIndex = k;
+                    			
+                    		}
+                    	}
+                    	if(!(employees[j].afterValue == employees[managerIndex].afterValue) && employees[i].company == 3) {
+                    		return false;
+                    	}
 
-                    } else if(employees[i].role == "engineer" && employees[j].role == "manager") {
-                        if(employees[i].role == "manager" & employees[i].company == 3) {
-                            flag = false;
-
-                        }
-
-                    }
                 }
 
             }
         }
+        }
 
-        return flag;
+        return true;
 
     }
+    
 
     public static Employee[] createEmployee(int beforeBoat, int beforeA, int beforeB, int beforeC,  //Method for creating Employees
                                             int beforeD, int beforeE, int beforeF, int afterBoat, int afterA, int afterB,
@@ -200,6 +193,7 @@ public class CompaniesCrossing {
         boolean recruit1 = recruitmentOne(employees);
         boolean recruit2 = recruitmentTwo(employees);
         boolean recruit3 =  recruitmentThree(employees);
+        
 
         if(!variablesBoat) {
             String message = "All positions must be 1 or 2!";
@@ -233,43 +227,53 @@ public class CompaniesCrossing {
             String message = "Company 3 manager would try to recruit someone!";
             System.out.println(message);
             return false;
-        } else {
+        }
+        
+        boolean isChampion = true;
+        for(int i = 0; i < employees.length; i++) {
+        	if(employees[i].afterValue != 2) {
+        		isChampion = false;
+        		break;
+        	}
+        }
+        if(isChampion) {
             String message = "You solved the puzzle!";
             System.out.println(message);
             return true;
         }
+        return true;
 
     }
 
 
 }
+//public static boolean recruitmentOne(Employee[] employees) {
+//
+//    boolean flag = true;
+//
+//    for(int i = 0; i < employees.length; i++) {
+//        for (int j = 0; j < employees.length; j++) {
+//            if (employees[i].afterValue == employees[j].afterValue && employees[i].company != employees[j].company && employees[i].role == "manager" && employees[j].role == "engineer" && employees[i].company == 1) {
+//                for (int k = 0; k < employees.length; j++) {
+//                    if (employees[j].company == employees[k].company && employees[k].role == "manager" && employees[k].afterValue == employees[j].afterValue) {
+//                        flag = true;
+//                    } else {
+//
+//                        flag = false;
+//                    }
+//                }
+//            } else if (employees[i].role == "engineer" && employees[j].role == "manager" && employees[j].company == 1) {
+//                for (int k = 0; k < employees.length; j++) {
+//                    if (employees[i].company == employees[k].company && employees[k].role == "manager" && employees[k].afterValue == employees[i].afterValue) {
+//                        flag = true;
+//                    } else {
+//                        flag = false;
+//                    }
+//                }
+//
+//            }
+//        }
+//    }
+//    return flag;
+//}
 
-public static boolean recruitmentOne(Employee[] employees) {
-
-    boolean flag = true;
-
-    for(int i = 0; i < employees.length; i++) {
-        for (int j = 0; j < employees.length; j++) {
-            if (employees[i].afterValue == employees[j].afterValue && employees[i].company != employees[j].company && employees[i].role == "manager" && employees[j].role == "engineer" && employees[i].company == 1) {
-                for (int k = 0; k < employees.length; j++) {
-                    if (employees[j].company == employees[k].company && employees[k].role == "manager" && employees[k].afterValue == employees[j].afterValue) {
-                        flag = true;
-                    } else {
-
-                        flag = false;
-                    }
-                }
-            } else if (employees[i].role == "engineer" && employees[j].role == "manager" && employees[j].company == 1) {
-                for (int k = 0; k < employees.length; j++) {
-                    if (employees[i].company == employees[k].company && employees[k].role == "manager" && employees[k].afterValue == employees[i].afterValue) {
-                        flag = true;
-                    } else {
-                        flag = false;
-                    }
-                }
-
-            }
-        }
-    }
-    return flag;
-}
